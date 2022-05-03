@@ -5,12 +5,11 @@ require_relative "lib/license_conflicts/version"
 Gem::Specification.new do |spec|
   spec.name = "license_conflicts"
   spec.version = LicenseConflicts::VERSION
-  spec.authors = ["TODO: Write your name"]
-  spec.email = ["TODO: Write your email address"]
+  spec.authors = ['Dennis Urtubia']
+  spec.email = ['dennis.urtubia@gmail.com']
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = 'Dependency license conflict checker'
+  spec.homepage = 'https://github.com/dennisurtubia/license_conflicts'
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
