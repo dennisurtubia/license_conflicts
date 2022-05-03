@@ -24,4 +24,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'license_finder', '~> 7.0.1'
+
+  spec.add_development_dependency 'pry-nav', '~> 1.0.0'
 end
