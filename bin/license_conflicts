@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'license_conflicts'
+
+if ARGV.empty?
+  puts 'Usage: license_conflicts <PROJECT_NAME>'
+  exit 1
+end
+
+LicenseConflicts::Finder.new(ARGV.first).find_conflicts
