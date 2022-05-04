@@ -8,4 +8,9 @@ if ARGV.empty?
   exit 1
 end
 
-LicenseConflicts::Finder.new(ARGV.first).find_conflicts
+conflitant_dependencies = LicenseConflicts::Finder.new(ARGV.first).find_conflicts
+
+if ARGV[1]
+  format = ARGV[1]
+  LicenseConflicts::Report.new(conflitant_dependencies, format).report
+end
