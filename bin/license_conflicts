@@ -3,14 +3,22 @@
 
 require 'license_conflicts'
 
-if ARGV.empty?
-  puts 'Usage: license_conflicts <PROJECT_NAME>'
-  exit 1
-end
+begin
+  finder = LicenseConflicts::Finder.new
 
-conflitant_dependencies = LicenseConflicts::Finder.new(ARGV.first).find_conflicts
+  conflitant_dependencies = finder.find_conflicts
+  conflitant_licenses = conflitant_dependencies.map { |d| d.licenses.first.name }.uniq
+  parsed_conflitant_licenses = conflitant_licenses.join(';')
 
-if ARGV[1]
-  format = ARGV[1]
-  LicenseConflicts::Report.new(conflitant_dependencies, format).report
+  dependencies_count = finder.dependencies_count
+
+  print "#{dependencies_count}, #{finder.project_license}, #{parsed_conflitant_licenses}, "
+
+  if ARGV[1]
+    format = ARGV[1]
+    LicenseConflicts::Report.new(conflitant_dependencies, format).report
+  end
+rescue Exception => exception
+  dependencies_count = finder.dependencies_count
+  print "#{dependencies_count}, #{finder.project_license}, , #{exception.message}"
 end
