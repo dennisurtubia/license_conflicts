@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Dependency license conflict checker'
   spec.homepage = 'https://github.com/dennisurtubia/license_conflicts'
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.4.7"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.executables = ['license_conflicts']
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'license_finder', '~> 7.0.1'
+  spec.add_dependency 'license_finder', '~> 7.2.1'
 
   spec.add_development_dependency 'pry-nav', '~> 1.0.0'
 end
