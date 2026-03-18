@@ -2,6 +2,7 @@
 
 require 'license_finder'
 require 'license_conflicts/conflicts_map'
+require 'license_conflicts/license_normalizer'
 require 'license_conflicts/project_metadata'
 
 module LicenseConflicts
@@ -13,7 +14,7 @@ module LicenseConflicts
     end
 
     def find_conflicts
-      @main_license = project_license
+      @main_license = LicenseNormalizer.normalize(project_license)
 
       raise "license_not_found" if main_license.nil?
       raise "examinated_package_license_not_mapped_#{main_license}" unless CONFLICTS_MAP.key?(main_license)
@@ -60,7 +61,7 @@ module LicenseConflicts
     end
 
     def has_conflict?(dependency_license)
-      CONFLICTS_MAP[main_license].include?(dependency_license)
+      CONFLICTS_MAP[main_license].include?(LicenseNormalizer.normalize(dependency_license))
     end
   end
 end
