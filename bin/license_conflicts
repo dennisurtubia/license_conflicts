@@ -1,24 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'license_conflicts'
+require 'license_conflicts/cli'
 
-begin
-  finder = LicenseConflicts::Finder.new
-
-  conflitant_dependencies = finder.find_conflicts
-  conflitant_licenses = conflitant_dependencies.map { |d| d.licenses.first.name }.uniq
-  parsed_conflitant_licenses = conflitant_licenses.join(';')
-
-  dependencies_count = finder.dependencies_count
-
-  print "#{dependencies_count}, #{finder.project_license}, #{parsed_conflitant_licenses}, "
-
-  if ARGV[1]
-    format = ARGV[1]
-    LicenseConflicts::Report.new(conflitant_dependencies, format).report
-  end
-rescue Exception => exception
-  dependencies_count = finder.dependencies_count
-  print "#{dependencies_count}, #{finder.project_license}, , #{exception.message}"
-end
+LicenseConflicts::CLI.start(ARGV)
