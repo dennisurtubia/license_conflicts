@@ -2,47 +2,42 @@
 
 require 'license_finder'
 require 'license_conflicts/conflicts_map'
+require 'license_conflicts/project_metadata'
 
 module LicenseConflicts
   class Finder
-    attr_reader :config, :main_license, :unapproved, :finder, :package_json
+    attr_reader :config, :main_license
 
     def initialize
       @config ||= LicenseFinder::Configuration.with_optional_saved_config(license_finder_config)
     end
-  
+
     def find_conflicts
       @main_license = project_license
 
-      raise Exception.new 'license_not_found' if main_license.nil?
-      raise Exception.new "examinated_package_license_not_mapped_#{main_license}" unless LicenseConflicts::CONFLICTS_MAP.has_key?(main_license)
+      raise "license_not_found" if main_license.nil?
+      raise "examinated_package_license_not_mapped_#{main_license}" unless CONFLICTS_MAP.key?(main_license)
 
       check_conflicts
     end
 
     def dependencies_count
-      unapproved.count - 1
+      unapproved.count { |d| d.name != project_name }
     end
 
     def project_license
       examinated_package = unapproved.find { |d| d.name == project_name }
-      license_finder_license_found = examinated_package.licenses.first.name unless examinated_package.nil?
-
-      license_finder_license_found || package_json['license']
+      examinated_package&.licenses&.first&.name || project_metadata.license
     end
 
     private
 
     def project_name
-      package_json['name'] || Pathname.pwd.basename.to_s
+      project_metadata.name
     end
 
-    def package_json
-      file = File.open('./package.json', 'r')
-
-      @package_json ||= JSON.parse(file.read)
-    ensure
-      file.close
+    def project_metadata
+      @project_metadata ||= ProjectMetadata.new
     end
 
     def license_finder_config
@@ -65,7 +60,7 @@ module LicenseConflicts
     end
 
     def has_conflict?(dependency_license)
-      LicenseConflicts::CONFLICTS_MAP[main_license].include?(dependency_license)
+      CONFLICTS_MAP[main_license].include?(dependency_license)
     end
   end
 end
