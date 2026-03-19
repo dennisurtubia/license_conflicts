@@ -1,0 +1,9 @@
+{
+  "release-type": "ruby",
+  "packages": {
+    ".": {
+      "version-file": "lib/license_conflicts/version.rb",
+      "changelog-path": "CHANGELOG.md"
+    }
+  }
+}
