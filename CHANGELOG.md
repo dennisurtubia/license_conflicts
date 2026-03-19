@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/dennisurtubia/license_conflicts/compare/v0.2.0...v0.3.0) (2026-03-19)
+
+
+### Features
+
+* update GitHub Actions workflow to publish gem on release events ([a48bce6](https://github.com/dennisurtubia/license_conflicts/commit/a48bce6301b3b23a91971fd0aa307d5da5408412))
+
 ## [0.2.0](https://github.com/dennisurtubia/license_conflicts/compare/v0.1.0...v0.2.0) (2026-03-19)
 
 
