@@ -19,17 +19,17 @@ module LicenseConflicts
 
       $stderr.print "Analyzing dependencies..."
       finder = LicenseConflicts::Finder.new
-      conflitant_dependencies = finder.find_conflicts
+      conflicting_dependencies = finder.find_conflicts
       $stderr.puts " done."
 
-      conflitant_licenses = conflitant_dependencies.map { |d| d.licenses.first.name }.uniq
-      parsed_conflitant_licenses = conflitant_licenses.join(';')
+      conflicting_licenses = conflicting_dependencies.map { |d| d.licenses.first.name }.uniq
+      parsed_conflicting_licenses = conflicting_licenses.join(';')
 
-      $stdout.print "#{finder.dependencies_count}, #{finder.project_license}, #{parsed_conflitant_licenses}, "
+      $stdout.print "#{finder.dependencies_count}, #{finder.project_license}, #{parsed_conflicting_licenses}, "
 
-      LicenseConflicts::Report.new(conflitant_dependencies, format || 'text').report if format
+      LicenseConflicts::Report.new(conflicting_dependencies, format || 'text').report if format
 
-      exit conflitant_dependencies.empty? ? 0 : 1
+      exit conflicting_dependencies.empty? ? 0 : 1
     rescue StandardError => exception
       $stdout.print "#{finder.dependencies_count rescue 0}, #{finder.project_license rescue nil}, , "
       $stderr.puts exception.message

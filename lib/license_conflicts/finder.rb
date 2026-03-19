@@ -16,8 +16,8 @@ module LicenseConflicts
     def find_conflicts
       @main_license = LicenseNormalizer.normalize(project_license)
 
-      raise "license_not_found" if main_license.nil?
-      raise "examinated_package_license_not_mapped_#{main_license}" unless CONFLICTS_MAP.key?(main_license)
+      raise "Could not detect the project license. Ensure your project metadata file declares a license." if main_license.nil?
+      raise "License '#{main_license}' is not covered by the conflict matrix." unless CONFLICTS_MAP.key?(main_license)
 
       check_conflicts
     end
@@ -27,8 +27,8 @@ module LicenseConflicts
     end
 
     def project_license
-      examinated_package = unapproved.find { |d| d.name == project_name }
-      examinated_package&.licenses&.first&.name || project_metadata.license
+      examined_package = unapproved.find { |d| d.name == project_name }
+      examined_package&.licenses&.first&.name || project_metadata.license
     end
 
     private

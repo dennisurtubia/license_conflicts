@@ -57,3 +57,6 @@ build-iPhoneSimulator/
 
 # rspec failure tracking
 .rspec_status
+
+# Directory created when the gem is installed locally for testing
+/license_conflicts/

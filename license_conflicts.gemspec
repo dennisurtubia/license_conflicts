@@ -8,13 +8,23 @@ Gem::Specification.new do |spec|
   spec.authors = ['Dennis Urtubia']
   spec.email = ['dennis.urtubia@gmail.com']
 
-  spec.summary = 'Dependency license conflict checker'
+  spec.summary     = 'Detect license incompatibilities between a project and its dependencies'
+  spec.description = 'license_conflicts identifies the license of an open-source project, ' \
+                     'resolves all its dependencies via LicenseFinder, and reports any ' \
+                     'license incompatibilities based on a built-in compatibility matrix. ' \
+                     'Supports Ruby, Node.js, Python, Go, and Java projects.'
   spec.homepage = 'https://github.com/dennisurtubia/license_conflicts'
-  spec.license = "MIT"
+  spec.license  = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  spec.metadata = {
+    "homepage_uri"          => spec.homepage,
+    "source_code_uri"       => spec.homepage,
+    "changelog_uri"         => "#{spec.homepage}/blob/main/CHANGELOG.md",
+    "bug_tracker_uri"       => "#{spec.homepage}/issues",
+    "rubygems_mfa_required" => "true"
+  }
+
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject do |f|
       (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
