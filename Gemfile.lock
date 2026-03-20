@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    license_conflicts (0.2.0)
+    license_conflicts (0.3.0)
       license_finder (~> 7.0.1)
       thor (~> 1.5)
 
