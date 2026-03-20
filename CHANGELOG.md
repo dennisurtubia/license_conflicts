@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.2.0...license_conflicts/v0.2.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* removes dev dependency ([898047c](https://github.com/dennisurtubia/license_conflicts/commit/898047c39aa636150238bd0365a8b3f38bc40d85))
+
 ## [0.2.0](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts-v0.1.0...license_conflicts/v0.2.0) (2026-03-20)
 
 
