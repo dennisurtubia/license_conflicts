@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/dennisurtubia/license_conflicts/compare/v0.2.0...v0.3.0) (2026-03-20)
+
+
+### Features
+
+* update gemfile ([28889f7](https://github.com/dennisurtubia/license_conflicts/commit/28889f7de58255088ee30886b66ab02f72db9e4a))
+* update GitHub Actions workflow to publish gem on release events ([a48bce6](https://github.com/dennisurtubia/license_conflicts/commit/a48bce6301b3b23a91971fd0aa307d5da5408412))
+
+
+### Bug Fixes
+
+* trigger release-please ([49a0dba](https://github.com/dennisurtubia/license_conflicts/commit/49a0dba07b57562f8b43dad9a21425e9bd999b67))
+
 ## [0.2.0](https://github.com/dennisurtubia/license_conflicts/compare/v0.1.0...v0.2.0) (2026-03-20)
 
 
