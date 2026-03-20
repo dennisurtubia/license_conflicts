@@ -3,7 +3,9 @@
   "packages": {
     ".": {
       "version-file": "lib/license_conflicts/version.rb",
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+      "package-name": "license_conflicts",
+      "initial-version": "0.1.0"
     }
   }
 }
