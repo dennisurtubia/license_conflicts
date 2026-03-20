@@ -60,3 +60,4 @@ build-iPhoneSimulator/
 
 # Directory created when the gem is installed locally for testing
 /license_conflicts/
+Gemfile.lock
