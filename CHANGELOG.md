@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/dennisurtubia/license_conflicts/compare/v0.3.0...v0.3.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* trigger release-please ([49a0dba](https://github.com/dennisurtubia/license_conflicts/commit/49a0dba07b57562f8b43dad9a21425e9bd999b67))
+
 ## [0.3.0](https://github.com/dennisurtubia/license_conflicts/compare/v0.2.0...v0.3.0) (2026-03-19)
 
 
