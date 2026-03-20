@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/dennisurtubia/license_conflicts/compare/v0.3.1...v0.4.0) (2026-03-20)
+
+
+### Features
+
+* update gemfile ([28889f7](https://github.com/dennisurtubia/license_conflicts/commit/28889f7de58255088ee30886b66ab02f72db9e4a))
+
 ## [0.3.1](https://github.com/dennisurtubia/license_conflicts/compare/v0.3.0...v0.3.1) (2026-03-20)
 
 
