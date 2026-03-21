@@ -22,8 +22,8 @@ module LicenseConflicts
     end
 
     def report
-      report = FORMATS[format] || FORMATS['text']
-      puts report.of(dependencies, {})
+      report_class = FORMATS[format] || FORMATS['text']
+      puts report_class.of(dependencies, {})
     end
   end
 end

@@ -7,7 +7,7 @@ require 'license_conflicts/project_metadata'
 
 module LicenseConflicts
   class Finder
-    attr_reader :config, :main_license
+    attr_reader :main_license
 
     def initialize
       @config ||= LicenseFinder::Configuration.with_optional_saved_config(license_finder_config)
@@ -57,7 +57,7 @@ module LicenseConflicts
     end
 
     def check_conflicts
-      unapproved.filter { |dependency| has_conflict?(dependency.licenses.first.name) }
+      unapproved.filter { |dependency| has_conflict?(dependency.licenses.first&.name) }
     end
 
     def has_conflict?(dependency_license)
