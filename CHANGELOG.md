@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.3.0...license_conflicts/v0.3.1) (2026-03-21)
+
+
+### Bug Fixes
+
+* correct variable reference for license aggregator initialization ([8a7f382](https://github.com/dennisurtubia/license_conflicts/commit/8a7f382befb2967ac21c6cb402236dab4f9230a3))
+
 ## [0.3.0](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.2.0...license_conflicts/v0.3.0) (2026-03-21)
 
 
