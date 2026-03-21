@@ -5,15 +5,15 @@ require_relative "lib/license_conflicts/version"
 Gem::Specification.new do |spec|
   spec.name = "license_conflicts"
   spec.version = LicenseConflicts::VERSION
-  spec.authors = ['Dennis Urtubia']
-  spec.email = ['dennis.urtubia@gmail.com']
+  spec.authors = ["Dennis Urtubia"]
+  spec.email = ["dennis.urtubia@gmail.com"]
 
-  spec.summary     = 'Detect license incompatibilities between a project and its dependencies'
-  spec.description = 'license_conflicts identifies the license of an open-source project, ' \
-                     'resolves all its dependencies via LicenseFinder, and reports any ' \
-                     'license incompatibilities based on a built-in compatibility matrix. ' \
-                     'Supports Ruby, Node.js, Python, Go, and Java projects.'
-  spec.homepage = 'https://github.com/dennisurtubia/license_conflicts'
+  spec.summary     = "Detect license incompatibilities between a project and its dependencies"
+  spec.description = "license_conflicts identifies the license of an open-source project, " \
+                     "resolves all its dependencies via LicenseFinder, and reports any " \
+                     "license incompatibilities based on a built-in compatibility matrix. " \
+                     "Supports Ruby, Node.js, Python, Go, and Java projects."
+  spec.homepage = "https://github.com/dennisurtubia/license_conflicts"
   spec.license  = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
@@ -30,9 +30,15 @@ Gem::Specification.new do |spec|
       (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
     end
   end
-  spec.executables = ['license_conflicts']
+  spec.executables = ["license_conflicts"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'license_finder', '~> 7.0.1'
-  spec.add_dependency 'thor', '~> 1.5'
+  spec.add_dependency "license_finder", "~> 7.0.1"
+  spec.add_dependency "thor", "~> 1.5"
+  spec.add_dependency "csv"
+  spec.add_dependency "logger"
+
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 1.21"
 end
