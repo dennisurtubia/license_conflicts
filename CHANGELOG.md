@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.2.0...license_conflicts/v0.3.0) (2026-03-21)
+
+
+### Features
+
+* clean up attribute reader and improve conflict checking logic ([0c861bd](https://github.com/dennisurtubia/license_conflicts/commit/0c861bd75b2b3d8efe1d97628e64ad7590ee77ed))
+
 ## [0.2.0](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts-v0.1.0...license_conflicts/v0.2.0) (2026-03-21)
 
 
