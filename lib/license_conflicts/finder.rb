@@ -49,7 +49,7 @@ module LicenseConflicts
     end
 
     def finder
-      @finder ||= LicenseFinder::LicenseAggregator.new(config, nil)
+      @finder ||= LicenseFinder::LicenseAggregator.new(@config, nil)
     end
 
     def unapproved
