@@ -27,7 +27,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         with:
           bundler-cache: true
-          ruby-version: .ruby-version
+          ruby-version: .tool-versions
 
       - uses: rubygems/release-gem@v1
         if: ${{ steps.release.outputs.release_created }}
