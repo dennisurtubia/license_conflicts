@@ -11,3 +11,9 @@ Style/StringLiteralsInInterpolation:
 
 Layout/LineLength:
   Max: 120
+
+# RSpec specs use a single `describe` block per file, naturally above the default
+# line limit; the limit does not apply to them.
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
