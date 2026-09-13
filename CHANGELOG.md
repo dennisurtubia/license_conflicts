@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.2](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.3.1...license_conflicts/v0.3.2) (2026-09-13)
+
+
+### Bug Fixes
+
+* conflicts mapping ([afcab97](https://github.com/dennisurtubia/license_conflicts/commit/afcab97686ffaa1351054667e027a683c64b78be))
+* conflicts mapping ([4e4cd3a](https://github.com/dennisurtubia/license_conflicts/commit/4e4cd3abc017181e4d45a35cbcad376d6e359af5))
+
 ## [0.3.1](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.3.0...license_conflicts/v0.3.1) (2026-03-21)
 
 
