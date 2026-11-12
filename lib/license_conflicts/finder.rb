@@ -2,6 +2,7 @@
 
 require 'license_finder'
 require 'license_conflicts/conflicts_map'
+require "license_conflicts/declared_dependencies"
 require 'license_conflicts/license_normalizer'
 require 'license_conflicts/project_metadata'
 
@@ -23,7 +24,7 @@ module LicenseConflicts
     end
 
     def dependencies_count
-      unapproved.count { |d| d.name != project_name }
+      dependencies.count
     end
 
     def project_license
@@ -56,8 +57,30 @@ module LicenseConflicts
       @unapproved ||= finder.unapproved
     end
 
+    # Only the direct dependencies, the ones the project declares in its own manifests, are
+    # analysed; transitive dependencies that LicenseFinder also reports are left out. When no
+    # supported manifest is found, every dependency LicenseFinder reports is kept.
+    def dependencies
+      @dependencies ||= begin
+        others = unapproved.reject { |d| d.name == project_name }
+        declared = DeclaredDependencies.new
+        declared.names ? one_per_name(others.select { |d| declared.include?(d.name) }) : others
+      end
+    end
+
+    # A package manager may report several versions of the same name (the direct dependency and
+    # transitive copies); keep the one whose version matches the copy at its install path.
+    def one_per_name(packages)
+      packages.group_by { |d| DeclaredDependencies.key(d.name) }.map do |_key, versions|
+        next versions.first if versions.one?
+
+        versions.find { |d| d.install_path && ProjectMetadata.new(d.install_path.to_s).version == d.version } ||
+          versions.first
+      end
+    end
+
     def check_conflicts
-      unapproved.filter { |dependency| has_conflict?(dependency.licenses.first&.name) }
+      dependencies.filter { |dependency| has_conflict?(dependency.licenses.first&.name) }
     end
 
     def has_conflict?(dependency_license)

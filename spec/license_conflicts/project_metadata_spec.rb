@@ -259,4 +259,43 @@ RSpec.describe LicenseConflicts::ProjectMetadata do
       expect(metadata.license).to be_nil
     end
   end
+
+  describe "#version" do
+    it "reads the version from the manifest" do
+      File.write("package.json", JSON.generate("name" => "my-app", "version" => "1.2.3"))
+
+      expect(metadata.version).to eq("1.2.3")
+    end
+
+    it "reads a literal version from a gemspec" do
+      File.write("my_gem.gemspec", "Gem::Specification.new { |s| s.version = \"0.4.0\" }")
+
+      expect(metadata.version).to eq("0.4.0")
+    end
+
+    it "reads the version from pom.xml" do
+      File.write("pom.xml", "<project><artifactId>a</artifactId><version>2.0</version></project>")
+
+      expect(metadata.version).to eq("2.0")
+    end
+
+    it "is nil when no manifest declares one" do
+      expect(metadata.version).to be_nil
+    end
+  end
+
+  describe "with an explicit root directory" do
+    it "reads the manifest in that directory" do
+      FileUtils.mkdir_p("vendor/lib")
+      File.write("vendor/lib/package.json", JSON.generate("name" => "lib", "version" => "3.0.0"))
+
+      expect(described_class.new("vendor/lib")).to have_attributes(name: "lib", version: "3.0.0")
+    end
+
+    it "falls back to that directory's name" do
+      FileUtils.mkdir_p("some-dir")
+
+      expect(described_class.new("some-dir").name).to eq("some-dir")
+    end
+  end
 end
