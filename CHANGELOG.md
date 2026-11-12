@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.3.2...license_conflicts/v0.4.0) (2026-11-12)
+
+
+### Features
+
+* analyze only direct dependencies ([1851332](https://github.com/dennisurtubia/license_conflicts/commit/1851332351dd0cc2da1f98124a1ab31749e1dd70))
+* analyze only direct dependencies ([a299cc2](https://github.com/dennisurtubia/license_conflicts/commit/a299cc21e4fd6105ebc03cc3d22ac14476d7fca5))
+
 ## [0.3.2](https://github.com/dennisurtubia/license_conflicts/compare/license_conflicts/v0.3.1...license_conflicts/v0.3.2) (2026-09-13)
 
 
