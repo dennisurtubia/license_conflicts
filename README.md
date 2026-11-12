@@ -23,10 +23,34 @@
 ## How It Works
 
 1. **Detects the project license** from its metadata file (`package.json`, `gemspec`, `pom.xml`, etc.)
-2. **Scans all dependencies** using LicenseFinder
+2. **Scans the dependencies** using LicenseFinder (see [Direct dependencies only](#direct-dependencies-only))
 3. **Normalizes license names** — SPDX identifiers, common aliases, and variant spellings are all mapped to canonical names
 4. **Checks for conflicts** using a built-in compatibility matrix
 5. **Reports results** to stdout and exits with an appropriate code
+
+### Direct dependencies only
+
+Only the **direct** dependencies are analyzed: the ones the project declares in its own manifests
+at the project root. Transitive dependencies that LicenseFinder also reports are left out.
+
+| Manifest                       | Declarations read                                                       |
+|--------------------------------|-------------------------------------------------------------------------|
+| `package.json`, `bower.json`   | `dependencies`, `devDependencies`                                       |
+| `Gemfile`, `*.gemspec`         | `gem`, `add_dependency`, `add_runtime_dependency`, `add_development_dependency` |
+| `requirements.txt`             | every requirement line (`-r`/`-e` options and bare URLs are skipped)    |
+| `setup.cfg`                    | `[options] install_requires`                                            |
+| `pyproject.toml`               | `[project] dependencies`; Poetry dependency tables (`python` excluded) |
+| `go.mod`                       | `require` directives not marked `// indirect`                           |
+| `pom.xml`                      | `<dependencies>` (by `artifactId` and `groupId:artifactId`)             |
+
+Every manifest present contributes. Names are compared ignoring case and the `-`, `_` and `.`
+separators. When a package manager reports a declared name in several versions, the one
+matching the copy at its install path is checked. Declared dependencies that were not resolved
+are not counted. If no manifest above is present (for example, a project that only has
+`Godeps/Godeps.json`, which pins every vendored package without telling direct from transitive
+ones), every dependency LicenseFinder reports is analyzed.
+
+Transitive dependencies are a known limitation, not yet covered.
 
 ---
 
@@ -47,7 +71,9 @@
 ## Requirements
 
 - Ruby >= 2.6.0
-- The package manager for your project type must be installed (e.g. `npm`, `bundler`, `mvn`)
+- The package manager for your project type must be installed (e.g. `npm`, `bundler`, `mvn`).
+  LicenseFinder activates every package manager whose manifest it finds at the project root, so
+  a repository that also ships, say, a `composer.json` needs `composer` too (otherwise exit `2`).
 
 ---
 
@@ -97,7 +123,7 @@ Results are printed to **stdout** as a single comma-separated line:
 
 | Field                 | Description                                                                      |
 |-----------------------|----------------------------------------------------------------------------------|
-| `dependency_count`    | Number of scanned dependencies                                                   |
+| `dependency_count`    | Number of analyzed (direct) dependencies                                         |
 | `project_license`     | Detected license of the analyzed project                                         |
 | `conflicting_licenses`| Semicolon-separated list of incompatible licenses found (empty if none)          |
 | `report`              | Full dependency report (only present when `--format` is specified)               |
